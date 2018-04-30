@@ -9,8 +9,23 @@ class App extends React.Component {
     this.handleChangeSelectedShip = this.handleChangeSelectedShip.bind(this);
   }
 
+  state = {
+    lat: null,
+    lng: null,
+  };
+
   handleChangeSelectedShip(ship) {
-    console.log(ship);
+    Meteor.call('vessels.getLocation', {name: ship}, (err, result) => {
+      if (err) {
+        window.Materialize.toast(err.reason, 4000)
+      } else {
+        this.setState({
+          lat: +result.lat,
+          lng: +result.lng,
+        });
+        console.log(result);
+      }
+    });
   }
 
   render() {
