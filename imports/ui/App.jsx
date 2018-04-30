@@ -1,22 +1,23 @@
 import React from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
 
-import Vessels from "../api/vessels";
+import VesselFindInputContainer from "./VesselFindInput/VesselFindInputContainer";
 
 class App extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleChangeSelectedShip = this.handleChangeSelectedShip.bind(this);
+  }
+
+  handleChangeSelectedShip(ship) {
+    console.log(ship);
+  }
+
   render() {
     return (
-      <div>
-        <h1>App</h1>
-        {this.props.vessels.map(v => <div key={v._id}>{v.name}</div>)}
-      </div>
+      <VesselFindInputContainer onSelected={this.handleChangeSelectedShip}/>
     )
   }
 }
 
-export default withTracker(() => {
-  return {
-    vessels: Vessels.find({}).fetch(),
-  };
-})(App);
+export default App;
