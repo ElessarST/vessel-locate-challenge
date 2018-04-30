@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Autocomplete, CardPanel } from "react-materialize";
 
@@ -20,6 +21,12 @@ const VesselFindInput = ({vessels, onSearchUpdate, onSelected}) => (
     />
   </CardPanel>
 );
+
+VesselFindInput.propTypes = {
+  vessels: PropTypes.array,
+  onSearchUpdate: PropTypes.func.isRequired,
+  onSelected: PropTypes.func.isRequired,
+};
 
 export default withTracker((props) => {
   const vesselSearch = props.vesselSearch;

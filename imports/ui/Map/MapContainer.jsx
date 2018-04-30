@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import Map from "./Map";
@@ -18,5 +19,11 @@ class MapContainer extends Component {
     );
   }
 }
+
+MapContainer.propTypes = {
+  lat: PropTypes.number,
+  lng: PropTypes.number,
+  shipName: PropTypes.string,
+};
 
 export default MapContainer;

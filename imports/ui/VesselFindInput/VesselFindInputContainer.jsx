@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import VesselFindInput from './VesselFindInput';
 
 class VesselFindInputContainer extends Component {
@@ -28,5 +29,9 @@ class VesselFindInputContainer extends Component {
     );
   }
 }
+
+VesselFindInputContainer.propTypes = {
+  onSelected: PropTypes.func.isRequired,
+};
 
 export default VesselFindInputContainer;

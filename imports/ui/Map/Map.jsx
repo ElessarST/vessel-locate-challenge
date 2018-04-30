@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 
@@ -39,7 +40,13 @@ const Map = ({lat, lng, shipName}) => {
         )
       }
     </GoogleMap>
-  );
+  )
+};
+
+Map.propTypes = {
+  lat: PropTypes.number,
+  lng: PropTypes.number,
+  shipName: PropTypes.string,
 };
 
 export default withScriptjs(withGoogleMap((props) => <Map {...props}/>));
