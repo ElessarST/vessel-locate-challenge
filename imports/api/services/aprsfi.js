@@ -6,7 +6,7 @@ function findLocationForVessel(vessel, callback) {
     params: {
       name: vessel.MMSI,
       what: 'loc',
-      apikey: "109676.BrVSr9i6TpbMbBe",
+      apikey: Meteor.settings.aprsfi_key,
       format: 'json',
     },
   }, callback);

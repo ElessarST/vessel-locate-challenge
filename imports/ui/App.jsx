@@ -1,6 +1,7 @@
 import React from 'react';
 
 import VesselFindInputContainer from "./VesselFindInput/VesselFindInputContainer";
+import MapContainer from "./Map/MapContainer";
 
 class App extends React.Component {
 
@@ -12,6 +13,7 @@ class App extends React.Component {
   state = {
     lat: null,
     lng: null,
+    shipName: null,
   };
 
   handleChangeSelectedShip(ship) {
@@ -22,15 +24,19 @@ class App extends React.Component {
         this.setState({
           lat: +result.lat,
           lng: +result.lng,
-        });
-        console.log(result);
+          shipName: ship,
+        })
       }
     });
   }
 
   render() {
+    const {lat, lng, shipName} = this.state;
     return (
-      <VesselFindInputContainer onSelected={this.handleChangeSelectedShip}/>
+      <>
+        <VesselFindInputContainer onSelected={this.handleChangeSelectedShip}/>
+        <MapContainer lat={lat} lng={lng} shipName={shipName}/>
+      </>
     )
   }
 }
