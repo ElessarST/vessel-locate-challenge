@@ -1,61 +1,30 @@
-import React from 'react';
-import { Meteor } from 'meteor/meteor';
+import React, { Fragment } from 'react';
 import { MuiThemeProvider } from 'material-ui';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
-import VesselFindInputContainer from './VesselFindInput/VesselFindInputContainer';
-import MapContainer from './Map/MapContainer';
-import Error from './Error';
 import theme from './theme';
+import FindVesselPage from './pages/FindVesselPage';
+import AboutPage from './pages/AboutPage';
+import Header from './components/Header';
 
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChangeSelectedShip = this.handleChangeSelectedShip.bind(this);
-    this.clearError = this.clearError.bind(this);
-  }
-
-  state = {
-    lat: null,
-    lng: null,
-    shipName: null,
-    error: '',
-  };
-
-  setError(error) {
-    this.setState({ error });
-  }
-
-  clearError() {
-    this.setError();
-  }
-
-  handleChangeSelectedShip(ship) {
-    Meteor.call('vessels.getLocation', { name: ship }, (err, result) => {
-      if (err) {
-        this.setState({ error: err.reason });
-      } else {
-        this.setState({
-          lat: +result.lat,
-          lng: +result.lng,
-          shipName: ship,
-        });
-      }
-    });
-  }
-
-  render() {
-    const {
-      lat, lng, shipName, error,
-    } = this.state;
-    return (
-      <MuiThemeProvider theme={theme}>
-        <VesselFindInputContainer onSelected={this.handleChangeSelectedShip} />
-        <MapContainer lat={lat} lng={lng} shipName={shipName} />
-        <Error error={error} onClose={this.clearError} />
-      </MuiThemeProvider>
-    );
-  }
-}
+const App = () => (
+  <MuiThemeProvider theme={theme}>
+    <Router>
+      <Fragment>
+        <Header />
+        <div className="content">
+          <Switch>
+            <Route exact path="/" component={FindVesselPage} />
+            <Route exact path="/about" component={AboutPage} />
+          </Switch>
+        </div>
+      </Fragment>
+    </Router>
+  </MuiThemeProvider>
+);
 
 export default App;

@@ -32,7 +32,6 @@ const Map = ({ lat, lng, shipName }) => {
               icon: SHIP_MARKER,
             }}
             position={{ lat, lng }}
-            // eslint-disable-next-line no-undef
             labelAnchor={new google.maps.Point(86, -28)}
             labelStyle={{ fontSize: '14px', width: '200px', textAlign: 'center' }}
           >

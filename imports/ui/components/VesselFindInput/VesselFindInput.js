@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Autosuggest from 'react-autosuggest';
 import { MenuItem, TextField, withStyles, Card, CardContent, Typography } from 'material-ui';
 
-import Vessels from '../../api/vessels';
+import Vessels from '../../../api/vessels';
 
 function renderInput(inputProps) {
   const { classes, ref, ...other } = inputProps;
@@ -128,17 +128,11 @@ class VesselFindInput extends React.Component {
     this.handleSuggestionsFetchRequested = this.handleSuggestionsFetchRequested.bind(this);
     this.handleSuggestionSelected = this.handleSuggestionSelected.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.state = {
-      value: props.vesselSearch,
-    };
   }
 
-  handleSuggestionsFetchRequested() {
-    this.props.onSearchUpdate(this.state.value);
-  }
+  handleSuggestionsFetchRequested() {}
 
   handleSuggestionsClearRequested() {
-    this.updateValue();
     this.props.onSearchUpdate('');
   }
 
@@ -147,15 +141,11 @@ class VesselFindInput extends React.Component {
   }
 
   handleChange(event, { newValue }) {
-    this.updateValue(newValue);
-  }
-
-  updateValue(value = '') {
-    this.setState({ value });
+    this.props.onSearchUpdate(newValue);
   }
 
   render() {
-    const { classes, vessels } = this.props;
+    const { classes, vessels, vesselSearch } = this.props;
 
     return (
       <Card className={classes.card}>
@@ -175,7 +165,7 @@ class VesselFindInput extends React.Component {
             inputProps={{
               classes,
               placeholder: 'Enter a vessel name',
-              value: this.state.value,
+              value: vesselSearch,
               onChange: this.handleChange,
             }}
             onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}

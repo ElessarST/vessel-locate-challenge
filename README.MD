@@ -12,7 +12,7 @@ Searching and displaying vessel location on Google Map using APRS (https://aprs.
 ## Run
 
 ```
-meteor --settings settings.json
+npm run start
 ```
 
 ## Usage
