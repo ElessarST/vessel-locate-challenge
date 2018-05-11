@@ -2,11 +2,8 @@
   "name": "vessel-locate-challenge-app",
   "private": true,
   "scripts": {
-    "start": "meteor run",
+    "start": "meteor run --settings settings.json",
     "lint": "eslint ."
-  },
-  "eslintConfig": {
-    "extends": "@meteorjs/eslint-config-meteor"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.42",

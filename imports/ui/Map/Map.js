@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
-const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
+import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
+import SHIP_MARKER from './ShipMarker';
 
-import SHIP_MARKER from "./ShipMarker";
+const { MarkerWithLabel } = require('react-google-maps/lib/components/addons/MarkerWithLabel');
 
-const DEFAULT_COORDS = {lat: -34.397, lng: 150.644};
+const DEFAULT_COORDS = { lat: -34.397, lng: 150.644 };
 
-const Map = ({lat, lng, shipName}) => {
+const Map = ({ lat, lng, shipName }) => {
   const hasCoords = lat && lng;
   return (
     <GoogleMap
       defaultZoom={5}
       defaultCenter={DEFAULT_COORDS}
-      center={hasCoords ? {lat, lng} : DEFAULT_COORDS}
+      center={hasCoords ? { lat, lng } : DEFAULT_COORDS}
       defaultOptions={{
         streetViewControl: false,
         scaleControl: true,
@@ -21,7 +21,7 @@ const Map = ({lat, lng, shipName}) => {
         panControl: false,
         zoomControl: true,
         rotateControl: true,
-        fullscreenControl: false
+        fullscreenControl: false,
       }}
       disableDefaultUI
     >
@@ -31,16 +31,17 @@ const Map = ({lat, lng, shipName}) => {
             options={{
               icon: SHIP_MARKER,
             }}
-            position={{lat, lng}}
+            position={{ lat, lng }}
+            // eslint-disable-next-line no-undef
             labelAnchor={new google.maps.Point(86, -28)}
-            labelStyle={{fontSize: "14px", width: "200px", textAlign: "center"}}
+            labelStyle={{ fontSize: '14px', width: '200px', textAlign: 'center' }}
           >
             <div>{shipName}</div>
           </MarkerWithLabel>
         )
       }
     </GoogleMap>
-  )
+  );
 };
 
 Map.propTypes = {
@@ -49,4 +50,4 @@ Map.propTypes = {
   shipName: PropTypes.string,
 };
 
-export default withScriptjs(withGoogleMap((props) => <Map {...props}/>));
+export default withScriptjs(withGoogleMap(props => <Map {...props} />));
