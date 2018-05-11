@@ -1,31 +1,8 @@
-html, body, #app {
+html, body, #app, .content {
     height: 100%;
     width: 100%;
-    padding: 0;
-    margin: 0;
 }
 
-#app .vessel__find-input {
-    position: absolute;
-    top: 10%;
-    width: 50%;
-    margin: 0 auto;
-    background-color: white;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    padding: 0;
-}
-
-#app .vessel__find-input .input-field  {
-    margin-top: 0;
-}
-
-#app .vessel__find-input .autocomplete-content {
-    box-shadow: none;
-}
-
-#app .vessel__find-input input {
-    margin: 3% 2%;
-    width: 96%;
+.content {
+    position: relative;
 }
